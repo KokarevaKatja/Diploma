@@ -38,7 +38,7 @@ public class CardPaymentPage {
     }
 
     public static void successNotification() {
-        $("notification_status_ok").shouldBe(visible, Duration.ofSeconds(15));
+        $("notification_status_ok").shouldBe(visible, Duration.ofMillis(12000));
     }
 
     public void errorNotification() {
