@@ -1,5 +1,6 @@
 package ru.netology.page;
 
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import ru.netology.data.CardInfo;
@@ -38,27 +39,31 @@ public class CardPaymentPage {
     }
 
     public static void successNotification() {
-        $("notification_status_ok").shouldBe(visible, Duration.ofMillis(12000));
+        $(".notification_status_ok").shouldBe(visible, Duration.ofMillis(40000));
     }
 
     public void errorNotification() {
-        $("notification_status_error").shouldBe(visible,Duration.ofMillis(12000));
+        $(".notification_status_error").shouldBe(visible,Duration.ofMillis(15000));
     }
 
     public void incorrectFormat() {
-        $(".input_sub").shouldHave(exactText("Неверный формат")).shouldBe(visible,Duration.ofMillis(12000));
+        $(".input__sub").shouldHave(exactText("Неверный формат")).shouldBe(visible,Duration.ofMillis(12000));
     }
 
     public void incorrectExpireDate() {
-        $(".input_sub").shouldHave(exactText("Неверно указан срок действия карты")).shouldBe(visible,Duration.ofMillis(12000));
+        $(".input__sub").shouldHave(exactText("Неверно указан срок действия карты")).shouldBe(visible,Duration.ofMillis(12000));
     }
 
     public void obligatoryField() {
-        $(".input_sub").shouldHave(exactText("Поле обязательно для заполнения")).shouldBe(visible,Duration.ofMillis(12000));
+        $(".input__sub").shouldHave(exactText("Поле обязательно для заполнения")).shouldBe(visible,Duration.ofMillis(12000));
+    }
+
+    public void allFieldsObligatory() {
+        $$(".input__sub").shouldHave(CollectionCondition.size(5)).shouldHave(CollectionCondition.texts("Поле обязательно для заполнения"));
     }
 
     public void cardExpired() {
-        $(".input_sub").shouldHave(exactText("Истёк срок действия карты")).shouldBe(visible,Duration.ofMillis(12000));
+        $(".input__sub").shouldHave(exactText("Истёк срок действия карты")).shouldBe(visible,Duration.ofMillis(12000));
     }
 
 }

@@ -28,7 +28,7 @@ public class DataHelper {
         return new CardInfo("4444 4444 4444 4441", "09", "24", "ИВАН ПЕТРОВ", "898");
     }
 
-    public static CardInfo ErrorAllFormFielsEmpty() {
+    public static CardInfo ErrorAllFormFieldsEmpty() {
         return new CardInfo("", "", "", "", "");
     }
 
@@ -70,6 +70,10 @@ public class DataHelper {
 
     public static CardInfo errorNotificationNumberTwentyTwoInYearField() {
         return new CardInfo("4444 4444 4444 4441", "09", "22", "IVAN PETROV", "898");
+    }
+
+    public static CardInfo errorNotificationIfEnterCurrentMonthAndCurrentYear() {
+        return new CardInfo("4444 4444 4444 4441", "03", "23", "IVAN PETROV", "898");
     }
 
     public static CardInfo errorNotificationNumberFiftyInYearField() {

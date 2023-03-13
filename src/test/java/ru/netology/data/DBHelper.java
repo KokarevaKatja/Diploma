@@ -2,73 +2,72 @@ package ru.netology.data;
 
 
 import lombok.SneakyThrows;
+import lombok.experimental.UtilityClass;
 import lombok.val;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.util.Properties;
+
+@UtilityClass
 
 public class DBHelper {
-    private static String url = System.getProperty("db.url");
-    private static String user = System.getProperty("db.user");
-    private static String password = System.getProperty("db.password");
 
-    private static Connection connection;
+    private static final QueryRunner runner = new QueryRunner();
+    private static Properties prop = prop();
+    private static final Connection conn = getConnection();
 
-    public static Connection getConnection() {
-        try {
-            connection = DriverManager.getConnection(url, user, password);
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
+    public static Properties prop() {
+        Properties properties = new Properties();
+        try (InputStream is = DBHelper.class.getClassLoader().getResourceAsStream("artifacts/application.properties")) {
+            properties.load(is);
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-        return connection;
+        return properties;
+    }
+
+   @SneakyThrows
+    public static Connection getConnection() {
+        return DriverManager.getConnection(
+                prop.getProperty("spring.datasource.url"),
+                prop.getProperty("spring.datasource.username"),
+                prop.getProperty("spring.datasource.password")
+        );
     }
 
     @SneakyThrows
     public static void cleanDatabase() {
-        val cleanPaymentEntity = "DELETE FROM payment_entity";
-        val cleanCreditEntity = "DELETE FROM credit_request_entity";
-        val cleanOrderEntity = "DELETE FROM order_entity";
-        val runner = new QueryRunner();
-        try (val connection = DriverManager.getConnection(
-                url, user, password)
-        ) {
-            runner.update(connection, cleanPaymentEntity);
-            runner.update(connection, cleanCreditEntity);
-            runner.update(connection, cleanOrderEntity);
+        var cleanPaymentEntity = "DELETE FROM payment_entity;";
+        var cleanCreditEntity = "DELETE FROM credit_request_entity;";
+        var cleanOrderEntity = "DELETE FROM order_entity;";
 
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
+        try (
+                var conn = DriverManager.getConnection(
+                        "jdbc:mysql://localhost:3306/app", "app", "pass"
+                );
+                var deleteStmt = conn.createStatement();
+        ) {
+
+            val payment = deleteStmt.executeUpdate(cleanPaymentEntity);
+            val credit = deleteStmt.executeUpdate(cleanCreditEntity);
+            val order = deleteStmt.executeUpdate(cleanOrderEntity);
         }
     }
 
     @SneakyThrows
     public static String getCreditPaymentStatus() {
         String statusSQL = "SELECT status FROM credit_request_entity";
-        return getStatus(statusSQL);
+        return runner.query(conn, statusSQL, new ScalarHandler<>());
     }
 
     @SneakyThrows
     public static String getCardPaymentStatus() {
         String statusSQL = "SELECT status FROM payment_entity";
-        return getStatus(statusSQL);
-    }
-
-    @SneakyThrows
-    private static String getStatus(String query) {
-        String result = "";
-        val runner = new QueryRunner();
-        try
-                (val conn = DriverManager.getConnection(
-                        url, user, password)
-                ) {
-
-            result = runner.query(conn, query, new ScalarHandler<String>());
-            System.out.println(result);
-            return result;
-        }
-
+        return runner.query(conn, statusSQL, new ScalarHandler<>());
     }
 }
