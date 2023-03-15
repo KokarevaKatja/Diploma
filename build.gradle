@@ -5,6 +5,8 @@ plugins {
 
 group 'ru.netology'
 version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 
@@ -31,5 +33,5 @@ test {
 
     systemProperty 'db.user', System.getProperty('db.user', 'app')
     systemProperty 'db.password', System.getProperty('db.password', 'pass')
-    systemProperty 'sut.url', System.getProperty('sut.url', 'http://localhost:8080')
+    systemProperty 'sut.url', System.getProperty('sut.url', 'http://localhost:8080/')
 }
