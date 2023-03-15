@@ -29,7 +29,6 @@ public class CardPaymentTests {
     }
 
 
-
     //passed
     @Test
     public void getSuccessfulPaymentValidCard() {
@@ -119,7 +118,7 @@ public class CardPaymentTests {
     }
 
 
-    //passed
+    //passed //через две минуты появляется сообщение "Успешно"
     @Test
     public void getErrorNotificationIfSixteenZerosInCardNumberField() {
         val mainPage = new MainPage();
@@ -211,7 +210,7 @@ public class CardPaymentTests {
         val cardPaymentPage = new CardPaymentPage();
         val cardInfo = errorNotificationNumberNinetyNineInYearField();
         cardPaymentPage.completedForm(cardInfo);
-        cardPaymentPage.cardExpired();
+        cardPaymentPage.incorrectExpireDate();
     }
 
 
@@ -371,7 +370,7 @@ public class CardPaymentTests {
     }
 
 
-    //passed
+    //passed // текст "Поле обязательно для заполнения" появляется не под полем "CVC/CVV", а под полем "Владелец". Под полем "CVC/CVV" отображается сообщение "Неверный формат"
     @Test
     public void getObligatoryFieldErrorIfCVCFieldEmpty() {
         val mainPage = new MainPage();

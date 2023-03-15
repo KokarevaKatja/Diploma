@@ -23,7 +23,7 @@ public class DBHelper {
 
     public static Properties prop() {
         Properties properties = new Properties();
-        try (InputStream is = DBHelper.class.getClassLoader().getResourceAsStream("artifacts/application.properties")) {
+        try (InputStream is = DBHelper.class.getClassLoader().getResourceAsStream("application.properties")) {
             properties.load(is);
         } catch (IOException ex) {
             ex.printStackTrace();

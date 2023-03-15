@@ -119,7 +119,7 @@ public class CreditPaymentTests {
     }
 
 
-    //failed
+    //passed  //через две минуты появляется сообщение "Успешно"
     @Test
     public void getErrorNotificationForCreditPaymentIfSixteenZerosInCardNumberField() {
         val mainPage = new MainPage();
@@ -370,7 +370,7 @@ public class CreditPaymentTests {
     }
 
 
-    //failed
+    //failed // текст "Поле обязательно для заполнения" появляется не под полем "CVC/CVV", а под полем "Владелец". Под полем "CVC/CVV" отображается сообщение "Неверный формат"
     @Test
     public void getObligatoryFieldErrorForCreditPaymentIfCVCFieldEmpty() {
         val mainPage = new MainPage();
