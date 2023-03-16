@@ -119,7 +119,7 @@ public class CreditPaymentTests {
     }
 
 
-    //passed  //через две минуты появляется сообщение "Успешно"
+    //passed  //при ручном тестировании через две минуты появляется сообщение "Успешно"
     @Test
     public void getErrorNotificationForCreditPaymentIfSixteenZerosInCardNumberField() {
         val mainPage = new MainPage();
@@ -145,13 +145,13 @@ public class CreditPaymentTests {
 
     //failed
     @Test
-    public void getIncorrectExpireDateErrorForCreditPaymentIfTwoZerosInMonthField() {
+    public void getIncorrectFormatErrorForCreditPaymentIfTwoZerosInMonthField() {
         val mainPage = new MainPage();
         mainPage.buyInCredit();
         val creditPaymentPage = new CreditPaymentPage();
         val cardInfo = errorNotificationTwoZerosInMonthField();
         creditPaymentPage.completedForm(cardInfo);
-        creditPaymentPage.incorrectExpireDate();
+        creditPaymentPage.incorrectFormat();
     }
 
 
