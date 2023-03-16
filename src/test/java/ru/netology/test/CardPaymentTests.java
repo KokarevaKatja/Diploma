@@ -96,7 +96,7 @@ public class CardPaymentTests {
 
     //failed
     @Test
-    public void getErrorIfAllFormFieldsEmpty() {
+    public void getAllFieldsObligatoryErrorIfAllFormFieldsEmpty() {
         val mainPage = new MainPage();
         mainPage.payWithCard();
         val cardPaymentPage = new CardPaymentPage();
