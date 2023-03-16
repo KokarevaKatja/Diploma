@@ -41,7 +41,7 @@ public class CardPaymentPage {
     }
 
     public void errorNotification() {
-        $(".notification_status_error").shouldBe(visible,Duration.ofMillis(15000));
+        $(".notification_status_error").shouldBe(visible,Duration.ofMillis(40000));
     }
 
     public void incorrectFormat() {

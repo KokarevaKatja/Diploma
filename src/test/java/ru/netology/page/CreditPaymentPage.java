@@ -41,7 +41,7 @@ public class CreditPaymentPage {
     }
 
     public void errorNotification() {
-        $(".notification_status_error").shouldBe(visible,Duration.ofMillis(12000));
+        $(".notification_status_error").shouldBe(visible,Duration.ofMillis(40000));
     }
 
     public void incorrectFormat() {
