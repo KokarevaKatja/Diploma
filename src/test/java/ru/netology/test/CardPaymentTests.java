@@ -1,5 +1,6 @@
 package ru.netology.test;
 
+
 import lombok.val;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,10 +9,9 @@ import ru.netology.page.CardPaymentPage;
 import ru.netology.page.MainPage;
 
 
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.open;;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.netology.data.DataHelper.*;
-
 
 
 public class CardPaymentTests {
@@ -380,4 +380,6 @@ public class CardPaymentTests {
         cardPaymentPage.completedForm(cardInfo);
         cardPaymentPage.obligatoryField();
     }
+
 }
+

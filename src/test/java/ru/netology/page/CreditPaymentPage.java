@@ -41,19 +41,19 @@ public class CreditPaymentPage {
     }
 
     public void errorNotification() {
-        $(".notification_status_error").shouldBe(visible,Duration.ofMillis(40000));
+        $(".notification_status_error").shouldBe(visible, Duration.ofMillis(40000));
     }
 
     public void incorrectFormat() {
-        $(".input__sub").shouldHave(exactText("Неверный формат")).shouldBe(visible,Duration.ofMillis(12000));
+        $(".input__sub").shouldHave(exactText("Неверный формат")).shouldBe(visible, Duration.ofMillis(12000));
     }
 
     public void incorrectExpireDate() {
-        $(".input__sub").shouldHave(exactText("Неверно указан срок действия карты")).shouldBe(visible,Duration.ofMillis(12000));
+        $(".input__sub").shouldHave(exactText("Неверно указан срок действия карты")).shouldBe(visible, Duration.ofMillis(12000));
     }
 
     public void obligatoryField() {
-        $(".input__sub").shouldHave(exactText("Поле обязательно для заполнения")).shouldBe(visible,Duration.ofMillis(12000));
+        $(".input__sub").shouldHave(exactText("Поле обязательно для заполнения")).shouldBe(visible, Duration.ofMillis(12000));
     }
 
     public void allFieldsObligatory() {
@@ -61,7 +61,7 @@ public class CreditPaymentPage {
     }
 
     public void cardExpired() {
-        $(".input__sub").shouldHave(exactText("Истёк срок действия карты")).shouldBe(visible,Duration.ofMillis(12000));
+        $(".input__sub").shouldHave(exactText("Истёк срок действия карты")).shouldBe(visible, Duration.ofMillis(12000));
     }
 
 }
