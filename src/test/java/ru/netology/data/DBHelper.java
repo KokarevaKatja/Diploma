@@ -31,7 +31,7 @@ public class DBHelper {
         return properties;
     }
 
-   @SneakyThrows
+    @SneakyThrows
     public static Connection getConnection() {
         return DriverManager.getConnection(
                 prop.getProperty("spring.datasource.url"),
@@ -48,7 +48,9 @@ public class DBHelper {
 
         try (
                 var conn = DriverManager.getConnection(
-                        "jdbc:mysql://localhost:3306/app", "app", "pass"
+                        prop.getProperty("spring.datasource.url"),
+                        prop.getProperty("spring.datasource.username"),
+                        prop.getProperty("spring.datasource.password")
                 );
                 var deleteStmt = conn.createStatement();
         ) {
