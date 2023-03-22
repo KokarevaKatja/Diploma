@@ -1,7 +1,11 @@
 package ru.netology.test;
 
 
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import lombok.val;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.data.DBHelper;
@@ -23,11 +27,20 @@ public class CardPaymentTests {
     }
 
 
+    @BeforeAll
+    static void setUpAll() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+    }
+
     @BeforeEach
     void cleanDB() {
         DBHelper.cleanDatabase();
     }
 
+    @AfterAll
+    static void tearDownAll() {
+        SelenideLogger.removeListener("allure");
+    }
 
     //passed
     @Test

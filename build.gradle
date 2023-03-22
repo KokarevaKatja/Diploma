@@ -1,14 +1,22 @@
 plugins {
     id 'java'
     id "io.freefair.lombok" version "4.1.6"
+    id 'io.qameta.allure' version '2.9.6'
 }
 
 group 'ru.netology'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 11
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
+
+allure {
+    version = '2.16.1'
+
+    useJUnit5 {
+        version = '2.16.1'
+    }
+}
 
 repositories {
     mavenCentral()
@@ -23,6 +31,7 @@ dependencies {
     testImplementation 'io.rest-assured:rest-assured:4.3.0'
     testImplementation 'io.rest-assured:json-schema-validator:4.3.0'
     testImplementation 'com.google.code.gson:gson:2.8.6'
+    testImplementation 'io.qameta.allure:allure-selenide:2.16.1'
 
 }
 
