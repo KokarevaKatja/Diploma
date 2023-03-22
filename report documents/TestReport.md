@@ -31,7 +31,7 @@
 
 
 ## Отчет сгенерированный в фреймворке Allure
-Подробные отчеты по каждому дефекту, сформированные при помощи Allure можно найти в архиве.
+Подробные отчеты по каждому дефекту, сформированные при помощи Allure можно найти в [архиве](https://github.com/KokarevaKatja/Diploma/tree/main/report%20documents/Allure%20report%20details).
 
 ![Скриншот 22-03-2023 160754](https://user-images.githubusercontent.com/108740955/226914493-5ab85307-1775-45f4-9496-48c8579713b0.jpg)
 ![Скриншот 22-03-2023 160929](https://user-images.githubusercontent.com/108740955/226914733-8965459b-45bf-4907-8140-526f5e7ccbd0.jpg)
